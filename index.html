@@ -1,9 +1,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Digital Communication Playground</title>
+  <title>Digital Communication Playground</title>
+  <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+  <script src="js/wavesurfer.js"></script>
+  <script src="js/wavesurfer.microphone.min.js"></script>
+  <script src="js/script.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
+  <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-1"> Digital Communications Playground </h1>
+        <p class="subtitle is-4"> A simple web app to demonstrate some of the fundamental concepts of Digital Communications using WebAudio ❤️ </p>
+      </div>
+    </div>
+  </section>
+  <section class="section is-small">
+    <div class="container is-fluid">
+      <h2 class="title is-2"> Frequency Shift Keying </h2>
+      <div class="columns is-vcentered">
+        <div class="column is-4">
+          <article class="message is-info">
+            <div class="message-header">
+              <p>Transmitter</p>
+            </div>
+            <div class="message-body">
+              <div class="field">
+                <a id="tx0" class="button is-large">
+                  <span class="icon is-medium">
+                    <p class="fa-2x">0</p>
+                  </span>
+                </a>
+              </div>
+              <div class="field">
+                <a id="tx1" class="button is-large">
+                  <span class="icon is-medium">
+                    <p class="fa-2x">1</p>
+                  </span>
+                </a>
+              </div>
+              <div class="field">
+                <input id="gainSlider" class="slider has-output is-fullwidth" min="0" max="100" value="50" step="1" type="range">
+                <output id="gainValue">50</output>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="column is-1 has-text-centered">
+          <span class="icon ">
+            <i class="fas fa-3x fa-arrow-right"></i>
+          </span>
+        </div>
+        <div class="column is-2">
+          <article class="message is-warning">
+            <div class="message-header">
+              <p>Channel</p>
+            </div>
+            <div class="message-body">
+            </div>
+          </article>
+        </div>
+        <div class="column is-1 has-text-centered">
+          <span class="icon">
+            <i class="fas fa-3x fa-arrow-right"></i>
+          </span>
+        </div>
+        <div class="column is-4">
+          <article class="message is-success">
+            <div class="message-header">
+              <p>Receiver</p>
+            </div>
+            <div class="message-body">
+              <div id="waveform"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="is-small" style="padding-bottom: 100px">
+  </section>
+  <div id="modal" class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <article class="message is-info">
+        <div class="message-header">
+          <p>Digi Comms Playground</p>
+        </div>
+        <div class="message-body has-text-centered">
+          <div class="field">
+            <a id="load" class="button is-large">Start</a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
 
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Digi Comms Playground</strong> by <a href="https://chinmay.audio">Chinmay</a>.
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
