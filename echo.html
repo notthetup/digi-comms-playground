@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Digital Communication Playground | Echo </title>
+  <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+  <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="js/echo.js"></script>
+</head>
+<body>
+  <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-1"> Echo </h1>
+        <p class="subtitle is-4"> Effect of echo on speech intelligibility </p>
+      </div>
+    </div>
+  </section>
+  <section class="section is-small">
+    <div class="container is-fluid">
+      <div class="columns is-vcentered">
+        <div class="column is-6">
+          <article class="message is-info">
+            <div class="message-header">
+              <p>Without Echo</p>
+            </div>
+            <div class="message-body">
+              <a id="noecho" class="button is-large">
+                <span class="icon is-large">
+                  <p class="fa-1x">Play</p>
+                </span>
+              </a>
+            </div>
+          </article>
+        </div>
+        <div class="column is-6">
+          <article class="message is-info">
+            <div class="message-header">
+              <p>With Echo</p>
+            </div>
+            <div class="message-body">
+              <a id="echo" class="button is-large">
+                <span class="icon is-large">
+                  <p class="fa-1x">Play</p>
+                </span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="is-small" style="padding-bottom: 100px">
+  </section>
+  <div id="modal" class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <article class="message is-info">
+        <div class="message-header">
+          <p>Digi Comms Playground</p>
+        </div>
+        <div class="message-body has-text-centered">
+          <div class="field">
+            <a id="load" class="button is-large">Start</a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Digi Comms Playground</strong> by <a href="https://chinmay.audio">Chinmay</a>.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

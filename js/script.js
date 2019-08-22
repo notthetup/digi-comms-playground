@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
   var txnode, outgain, thrugain;
 
   document.getElementById('load').addEventListener('click', () => {
-    document.getElementById('modal').classList.remove('is-active')
+    document.getElementById('modal').classList.remove('is-active');
     context = new AudioContext();
     toggleRXDisplay();
     createBasicTransmitter(context);
@@ -77,7 +77,7 @@ window.addEventListener('load', () => {
             audioContext: context || null,
             audioScriptProcessor: processor || null,
             plugins: [WaveSurfer.microphone.create({
-              'bufferSize': 16384
+              'bufferSize': 4096
             })]
         });
 

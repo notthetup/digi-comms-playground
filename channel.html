@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Digital Communication Playground | Channel </title>
+  <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
+  <script src="js/wavesurfer.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="js/channel.js"></script>
+</head>
+<body>
+  <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-1"> Echo </h1>
+        <p class="subtitle is-4"> Effect of echo on speech intelligibility </p>
+      </div>
+    </div>
+  </section>
+  <section class="section is-small">
+    <div class="container is-fluid">
+      <div class="columns is-vcentered">
+        <div class="column is-12">
+          <article class="message is-info">
+            <div class="message-header">
+              <p>Source</p>
+            </div>
+            <div class="message-body">
+              <div id="waveform"></div>
+            </div>
+          </article>
+          <div class="is-pulled-left">
+            <a id="wctrl" class="button is-large is-info" disabled>
+              <span class="icon is-medium">
+                <i class="fa fa-play"></i>
+              </span>
+            </a>
+          </div>
+          <div class="is-pulled-right">
+            <div class="file is-info">
+              <label class="file-label">
+                <input id="wload" class="file-input" type="file" name="resume">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Choose a file…
+                  </span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section is-small">
+    <div class="container is-fluid">
+      <div class="columns is-vcentered">
+        <div class="column is-12">
+          <article class="message is-info">
+            <div class="message-header">
+              <p>Channel</p>
+            </div>
+            <div class="message-body">
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="is-small" style="padding-bottom: 100px">
+  </section>
+  <div id="modal" class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <article class="message is-info">
+        <div class="message-header">
+          <p>Digi Comms Playground</p>
+        </div>
+        <div class="message-body has-text-centered">
+          <div class="field">
+            <a id="load" class="button is-large">Start</a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Digi Comms Playground</strong> by <a href="https://chinmay.audio">Chinmay</a>.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
