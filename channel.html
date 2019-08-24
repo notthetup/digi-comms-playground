@@ -11,15 +11,15 @@
   <section class="hero is-small is-light">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title is-1"> Echo </h1>
-        <p class="subtitle is-4"> Effect of echo on speech intelligibility </p>
+        <h1 class="title is-1"> Channel Effects </h1>
+        <p class="subtitle is-4"> Effect of channel on audio </p>
       </div>
     </div>
   </section>
   <section class="section is-small">
     <div class="container is-fluid">
-      <div class="columns is-vcentered">
-        <div class="column is-12">
+      <div class="columns">
+        <div class="column is-8">
           <article class="message is-info">
             <div class="message-header">
               <p>Source</p>
@@ -51,18 +51,22 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <section class="section is-small">
-    <div class="container is-fluid">
-      <div class="columns is-vcentered">
-        <div class="column is-12">
+        <div class="column is-4">
           <article class="message is-info">
             <div class="message-header">
               <p>Channel</p>
             </div>
             <div class="message-body">
+              <div class="field has-text-centered level">
+                <span class=""> Multipath Delay </span>
+                <input id="echoSlider" class="slider control is-fullwidth" min="0" max="1" value="0.0" step="0.01" type="range">
+                <output id="echoValue" class="">0.0</output>
+              </div>
+              <div class="field has-text-centered level">
+                <span class=""> Noise </span>
+                <input id="noiseSlider" class="slider control is-fullwidth" min="0" max="0.5" value="0.0" step="0.01" type="range">
+                <output id="noiseValue" class="">0.0</output>
+              </div>
             </div>
           </article>
         </div>

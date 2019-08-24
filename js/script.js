@@ -38,7 +38,7 @@ window.addEventListener('load', () => {
 
   gainSlider.addEventListener('input', (e) => {
     outgain.gain.value = e.target.value/100;
-    document.getElementById('gainValue').innerHTML = e.target.value;
+    document.getElementById('echoValue').innerHTML = e.target.value;
   });
 
   document.addEventListener('keydown',(e) => {
