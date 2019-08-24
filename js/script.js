@@ -43,7 +43,7 @@ window.addEventListener('load', () => {
 
   gainSlider.addEventListener('input', (e) => {
     outgain.gain.value = e.target.value/100;
-    document.getElementById('echoValue').innerHTML = e.target.value;
+    document.getElementById('gainValue').innerHTML = e.target.value;
   });
 
   document.addEventListener('keydown',(e) => {
@@ -122,16 +122,16 @@ window.addEventListener('load', () => {
 
   function createBasicTransmitter(context){
 
-    txnode = new GainNode(context);
-    outgain = new GainNode(context);
-    thrugain = new GainNode(context);
+    txnode = context.createGain();
+    outgain = context.createGain();
+    thrugain = context.createGain();
 
     thrugain.gain.value = 0.5;
 
-    osc0 = new OscillatorNode(context);
-    gain0 = new GainNode(context);
-    osc1 = new OscillatorNode(context);
-    gain1 = new GainNode(context);
+    osc0 = context.createOscillator();
+    gain0 = context.createGain();
+    osc1 = context.createOscillator();
+    gain1 = context.createGain();
 
     osc0.connect(gain0).connect(txnode);
     osc1.connect(gain1).connect(txnode);

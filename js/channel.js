@@ -16,7 +16,7 @@ window.addEventListener('load', () => {
     var wctrlicon = document.querySelector('#wctrl span svg');
     wctrl.addEventListener('click', () => {
       if (wctrlicon.dataset['icon'] == 'play'){
-        var buf = new AudioBuffer({length : context.sampleRate, numberOfChannels: 2, sampleRate: context.sampleRate});
+        var buf = context.createBuffer(2,context.sampleRate*3,context.sampleRate);
         var dataL = buf.getChannelData(0);
         var dataR = buf.getChannelData(1);
         var echoSample = parseInt(Math.floor(context.sampleRate * echoTime));
@@ -43,11 +43,11 @@ window.addEventListener('load', () => {
         wctrl.removeAttribute('disabled');
       });
       wavesurfer.loadBlob(e.target.files[0]);
-      ir = new ConvolverNode(context);
-      var comb = new GainNode(context);
-      noisegain = new GainNode(context);
-      var noisenode = new AudioBufferSourceNode(context);
-      var buf = new AudioBuffer({length : context.sampleRate*3, numberOfChannels: 2, sampleRate: context.sampleRate});
+      ir = context.createConvolver();
+      var comb = context.createGain();
+      noisegain = context.createGain();
+      var noisenode = context.createBufferSource();
+      var buf = context.createBuffer(2,context.sampleRate*3,context.sampleRate);
       var dataL = buf.getChannelData(0);
       var dataR = buf.getChannelData(1);
       for (var i = 0; i < dataL.length; i++){
