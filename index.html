@@ -4,7 +4,8 @@
   <title>Digital Communication Playground</title>
   <link rel="stylesheet" type="text/css" href="css/bulma.min.css">
   <script src="js/wavesurfer.js"></script>
-  <script src="js/wavesurfer.microphone.min.js"></script>
+  <script src="js/wavesurfer.microphone.js"></script>
+  <script src="js/goertzel.js"></script>
   <script src="js/script.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
@@ -63,6 +64,14 @@
               <p>Channel</p>
             </div>
             <div class="message-body">
+              <div class="level">
+                <span class="icon level-item">
+                  <i class="fas fa-3x fa-volume-up"></i>
+                </span >
+                <span class="icon level-item">
+                  <i class="fas fa-3x fa-microphone"></i>
+                </span>
+              </div>
             </div>
           </article>
         </div>
@@ -78,6 +87,16 @@
             </div>
             <div class="message-body">
               <div id="waveform"></div>
+              <div class="level">
+                <p class="level-item">Decoder : </p>
+                <div class="field level-item">
+                  <a id="detBtn" class="button is-large">
+                    <span class="icon is-medium">
+                      <p id="det" class="fa-2x">-</p>
+                    </span>
+                  </a>
+                </div>
+              </div>
             </div>
           </article>
         </div>

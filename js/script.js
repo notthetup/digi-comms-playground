@@ -1,3 +1,5 @@
+/*global WaveSurfer, GoertzelFilter*/
+
 window.addEventListener('load', () => {
   var wavesurfer;
   var AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -9,6 +11,7 @@ window.addEventListener('load', () => {
   var gain1;
   var txnode, outgain, thrugain;
 
+
   document.getElementById('load').addEventListener('click', () => {
     document.getElementById('modal').classList.remove('is-active');
     context = new AudioContext();
@@ -18,6 +21,8 @@ window.addEventListener('load', () => {
 
   var tx0 = document.getElementById('tx0');
   var tx1 = document.getElementById('tx1');
+  var det = document.getElementById('det');
+  var detBtn = document.getElementById('detBtn');
   var gainSlider = document.getElementById('gainSlider');
 
   tx0.addEventListener('mousedown', () => {
@@ -66,36 +71,53 @@ window.addEventListener('load', () => {
   });
 
   function toggleRXDisplay(){
-    if (wavesurfer === undefined) {
-        // Init wavesurfer
-        processor = context.createScriptProcessor(16384, 1, 1);
-        wavesurfer = WaveSurfer.create({
-            container: '#waveform',
-            waveColor: 'black',
-            interact: false,
-            cursorWidth: 0,
-            audioContext: context || null,
-            audioScriptProcessor: processor || null,
-            plugins: [WaveSurfer.microphone.create({
-              'bufferSize': 4096
-            })]
-        });
+    // Init wavesurfer
+    const bufferSize = 1024;
+    processor = context.createScriptProcessor(16384, 1, 1);
+    wavesurfer = WaveSurfer.create({
+        container: '#waveform',
+        waveColor: 'black',
+        interact: false,
+        cursorWidth: 0,
+        audioContext: context || null,
+        audioScriptProcessor: processor || null,
+        plugins: [WaveSurfer.microphone.create({
+          'bufferSize': bufferSize
+        })]
+    });
 
-        wavesurfer.microphone.on('deviceReady', function() {
-            console.info('Device ready!');
-        });
-        wavesurfer.microphone.on('deviceError', function(code) {
-            console.warn('Device error: ' + code);
-        });
-        wavesurfer.microphone.start();
-    } else {
-        // start/stop mic on button click
-        if (wavesurfer.microphone.active) {
-            wavesurfer.microphone.stop();
-        } else {
-            wavesurfer.microphone.start();
-        }
-    }
+    var gf1 = GoertzelFilter();
+    var gf2 = GoertzelFilter();
+
+    gf1.init(4000, context.sampleRate, bufferSize);
+    gf2.init(5000, context.sampleRate, bufferSize);
+
+    wavesurfer.microphone.on('deviceReady', function() {
+        console.info('Device ready!');
+    });
+    wavesurfer.microphone.on('deviceError', function(code) {
+        console.warn('Device error: ' + code);
+    });
+    wavesurfer.microphone.start();
+
+    wavesurfer.on('ready', (buf) => {
+      var data = buf.getChannelData(0);
+      var r1 = gf1.run(data);
+      var r2 = gf2.run(data);
+
+      if (r1 > r2 && r1 > 0.05){
+        det.innerHTML='0';
+        detBtn.classList.add('is-info');
+        console.log('Detected 4000');
+      }else if (r1 < r2 && r2 > 0.05){
+        det.innerHTML='1';
+        detBtn.classList.add('is-info');
+        console.log('Detected 5000');
+      } else{
+        det.innerHTML='-';
+        detBtn.classList.remove('is-info');
+      }
+    });
   }
 
   function createBasicTransmitter(context){
@@ -115,7 +137,7 @@ window.addEventListener('load', () => {
     osc1.connect(gain1).connect(txnode);
 
     txnode.connect(outgain).connect(context.destination);
-    txnode.connect(thrugain).connect(processor);
+    // txnode.connect(thrugain).connect(processor);
 
     gain0.gain.value = 0;
     gain1.gain.value = 0;
