@@ -31,6 +31,7 @@ window.addEventListener('load', () => {
   var det = document.getElementById('det');
   var detBtn = document.getElementById('detBtn');
   var gainSlider = document.getElementById('gainSlider');
+  var chiplenSlider = document.getElementById('chiplenSlider');
   var seqBtn = document.getElementById('seqBtn');
   var seqInput = document.getElementById('seq');
   var rec = document.getElementById('rec');
@@ -54,6 +55,11 @@ window.addEventListener('load', () => {
   gainSlider.addEventListener('input', (e) => {
     outgain.gain.value = e.target.value/100;
     document.getElementById('gainValue').innerHTML = e.target.value;
+  });
+
+  chiplenSlider.addEventListener('input', (e) => {
+    chiplen = e.target.value/1000;
+    document.getElementById('chiplenValue').innerHTML = e.target.value;
   });
 
   document.addEventListener('keydown',(e) => {
@@ -94,7 +100,6 @@ window.addEventListener('load', () => {
         seqBtn.classList.remove('is-info');
       });
     }
-    seqInput.value = '';
   });
 
   function transmitSequence(sequence, cb){
